@@ -1,0 +1,26 @@
+Thanks for installing Archx ;
+
+this is an easy to install ArchLinux ;
+
+1 : login with ' root ' user by ' archx_root ' password
+
+2 : you can execute 'startx' command to run graphical environment
+
+3 : design your hard disk with cfdisk & mkfs or gparted
+
+4 : mount your partitions in /mnt
+
+5 : install archx with  "bash /root/install_system.sh"
+
+6 : install bootloader with "bash /root/install_boot.sh"
+
+7 : make your preferences in chroot environment 
+
+8 : exit chroot with "exit"
+
+9 : reboot system with "reboot"
+
+10 : login with ' demon ' user with ' archx_user ' password
+
+11 : install pacaur with " bash ~/install_pacaur.sh "
+
