@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# before running this script you should install sudo , grub , os-prober with below command:
-# pacman -S grub sudo --needed --noconfirm
+
+echo -e "Installing needed tools ! \n"
+pacman -S grub sudo --needed --noconfirm
 
 echo -e "Set a PASSWORD for root user : \n "
 passwd
