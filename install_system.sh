@@ -16,6 +16,6 @@ rm /mnt/etc/systemd/scripts/choose-mirror
 
 chmod 700 /mnt/root
 
-genfstab /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt /bin/bash -c "/root/chroot_jobs.sh"
