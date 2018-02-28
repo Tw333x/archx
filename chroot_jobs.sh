@@ -57,7 +57,7 @@ case "$PACAUR_ASK" in
 	
 		*) 
 			echo -e "Let's install pacaur ! \n"
-      $( curl -s -o install_pacaur.sh https://github.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x install_pacaur.sh && su -c "./install_pacaur.sh" $USER_NAME_INPUT)
+      $( curl -s -o install_pacaur.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x install_pacaur.sh && su -c "./install_pacaur.sh" $USER_NAME_INPUT)
       ;;
 esac
 
