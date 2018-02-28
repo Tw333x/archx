@@ -46,4 +46,19 @@ fi
 echo -e "Making GRUB CONFIG \n"
 grub-mkconfig -o /boot/grub/grub.cfg
 
+echo -e "Install pacaur \n"
+read -p "Do you want install pacaur ? (Y/n)" PACAUR_ASK
+case "$PACAUR_ASK" in
+	
+		"no"|"n"|"N"|"No"|"NO") 
+			sleep 4
+			;;
+	
+		*) 
+			echo -e "Let's install pacaur ! \n"
+      $( curl -s -o install_pacaur.sh https://github.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x install_pacaur.sh && su -c "./install_pacaur.sh" $USER_NAME_INPUT)
+      ;;
+esac
+
+
 
