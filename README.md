@@ -16,7 +16,7 @@ partition       mountpoint
 /dev/sda7       swap area
 </pre>
 you should make swap on and mount partitions!:<br/>
-`swapon /dev/sda7`<br/>
+<b>`swapon /dev/sda7`</b><br/>
 `mount /dev/sda5 /mnt`<br/>
 `mkdir -p /mnt/boot /mnt/home`<br/>
 `mount /dev/sda4 /mnt/boot`<br/>
