@@ -23,7 +23,7 @@ you should make swap on and mount partitions!:<br/>
 <b>mount /dev/sda6 /mnt/home</b><br/>
 )<br/>
 6 : Download the installer script :<br/> 
-<b>curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_system.sh && chmod +x install_system.sh
+<b>curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_system.sh && chmod +x install_system.sh && ./install_system.sh
 </b><br/> 
 7 : You can read this script to see what will happen ... : <b> cat install_system.sh </b><br/>
 for information : this script will install base system from the live system and turn off or delete some services ... and download some other files from <b>https://github.com/virtualdemon/archx</b> also you can intall arch linux in way of net-install! <br/><br/>

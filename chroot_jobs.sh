@@ -3,14 +3,20 @@
 echo -e "Installing needed tools ! \n"
 pacman -S grub sudo --needed --noconfirm
 
+clear
+
 echo -e "Set a PASSWORD for root user : \n "
 passwd
+
+clear
 
 read -p  "Please enter a USERNAME : " USER_NAME_INPUT
 useradd -m -g users  -G wheel,storage,power  -s $(which zsh) $USER_NAME_INPUT
 
 echo -e "Set a PASSWORD for $USER_NAME_INPUT : "
 passwd $USER_NAME_INPUT
+
+clear
 
 echo -e "Setting timezone(Iran) \n"
 rm -f /etc/localtime
@@ -27,6 +33,8 @@ locale-gen
 
 echo -e "Edit /etc/sudoers (let wheel users to execute sudo!) \n"
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
+
+clear
 
 echo -e "Start installing BootLoader(grub) \n"
 read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
@@ -47,19 +55,8 @@ fi
 echo -e "Making GRUB CONFIG \n"
 grub-mkconfig -o /boot/grub/grub.cfg
 
-echo -e "Install pacaur \n"
-read -p "Do you want install pacaur ? (Y/n)" PACAUR_ASK
-case "$PACAUR_ASK" in
-	
-		"no"|"n"|"N"|"No"|"NO") 
-			sleep 4
-			;;
-	
-		*) 
-			echo -e "Let's install pacaur ! \n"
-      $( curl -s -o install_pacaur.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x install_pacaur.sh && su -c "./install_pacaur.sh" $USER_NAME_INPUT)
-      ;;
-esac
 
+echo -e "Let's download pacaur installer! (an aur helper)! \n"
+curl -s -o /home/$USER_NAME_INPUT/install_pacaur.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x /home/$USER_NAME_INPUT/install_pacaur.sh 
 
 
