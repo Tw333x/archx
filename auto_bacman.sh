@@ -24,7 +24,7 @@ esac
 String=$(cat PackageList.txt)
 
 for Package in $String; do
-    bacman $Package
+    bacman $Package 2> /dev/null
 done
 
 
@@ -39,7 +39,7 @@ mkdir -m 755 -p /mnt/boot
 
 cp -avT /run/archiso/bootmnt/arch/boot/$(uname -m)/vmlinuz /mnt/boot/vmlinuz-linux
 
-pacman -r /mnt -U /mnt/var/cache/pacman/pkg/*
+pacman -r /mnt -U /mnt/var/cache/pacman/pkg/* 2> /dev/null
 
 chmod 700 /mnt/root
 
