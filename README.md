@@ -36,8 +36,9 @@ you should make swap on and mount partitions!:<br/>
 <b>`curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_rsync.sh && chmod +x install_system.sh && ./install_system.sh`</b>
 <br/><br/>
 6 : You can read this script to see what will happen ... : `cat install_system.sh` <br/>
-for information : this script will install base system from the live system and turn off or delete some services ... and download some other files from [Github Repo](https://github.com/virtualdemon/archx) also you can install arch linux in way of net-install! <br/>
-
+Also if you want to do your chroot customizations automatically you can run below command in chroot environment : <br/>
+<b>`curl -s -o chroot_jobs https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs && ./chroot_jobs`</b> 
+<br/>
 7 : After system installation you can make your customization in CHROOT environment <br/>
 
 8 : When your customization finished you can `exit` and `reboot` system to use your installed arch linux .<br/>
