@@ -57,7 +57,8 @@ clear
 # GENERATE FSTAB
 genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
-# CHROOT TO INSTALLED SYSTEM AND MAKE CUSTOMIZATION
-arch-chroot /mnt /bin/bash -c "echo -e '\n Connect internet and execute : curl -s -o chroot_jobs.sh https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh'"
+echo -e '\n Connect internet and execute : curl -s -o chroot_jobs.sh   https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh'
 
+# CHROOT TO INSTALLED SYSTEM AND MAKE CUSTOMIZATION
+arch-chroot /mnt /usr/bin/zsh
 
