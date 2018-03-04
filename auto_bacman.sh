@@ -46,6 +46,8 @@ pacman -r /mnt -U /mnt/var/cache/pacman/pkg/*
 
 chmod 700 /mnt/root
 
+clear
+
 genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
 arch-chroot /mnt /usr/bin/bash -c "echo -e 'you can connect to internet now and run : curl -s -o chroot_jobs.sh https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh\n'"
