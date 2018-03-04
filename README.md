@@ -28,5 +28,10 @@ you should make swap on and mount partitions!:<br/>
 for information : this script will install base system from the live system and turn off or delete some services ... and download some other files from <b>https://github.com/virtualdemon/archx</b> also you can install arch linux in way of net-install! <br/>
 7 : After system installation you can make your customization in CHROOT environment <br/>
 8 : When your customization finished you can `exit` and `reboot` system to use your installed arch linux .<br/>
-9 : For using aur a script exist in `~/install_pacaur.sh` just execute that to install pacaur!
+9 : For using pacman for first time run this commands :<br/>
+`pacman -Sy` <br/>
+`pacman-key --init` <br/>
+`pacman-key --populate archlinux`<br/>
+`pacman-key --refresh-keys`<br/>
+10 : For using aur a script exist in `~/install_pacaur.sh` just execute that to install pacaur!
 
