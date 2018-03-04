@@ -2,9 +2,9 @@ Thanks for using Archx ;<br/>
 
 <h2>It's an easy way to install ArchLinux </h2><br/>
 
-1 : Login to system with "root" ; in ArchLinux live system you'll login automatically. <br/>
+1 : Login to system with "`root`" ; in ArchLinux live system you'll login automatically. <br/>
 
-2 : Design your hard disk layout with cfdisk or parted or gdisk(for GPT disks) or fdisk <br/> 
+2 : Design your hard disk layout with **cfdisk** or **parted** or **gdisk** (for GPT disks) or **fdisk** <br/> 
 
 3 : Format your partitions with mkfs(make file systems) (e.g. : `mkfs.ext4 /dev/sda4` or `mkswap /dev/sda7`) <br/>
 
@@ -38,7 +38,7 @@ you should make swap on and mount partitions!:<br/>
 6 : You can read this script to see what will happen ... : `cat install_system.sh` <br/>
 Also if you want to do your chroot customizations automatically you can run below command in chroot environment : <br/>
 <b>`curl -s -o chroot_jobs https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs && ./chroot_jobs`</b> 
-<br/>
+<br/><br/>
 7 : After system installation you can make your customization in CHROOT environment <br/>
 
 8 : When your customization finished you can `exit` and `reboot` system to use your installed arch linux .<br/>
