@@ -6,14 +6,14 @@ clear
 echo "You are here : " && pwd
 
 # SELECT ACTION
-echo -e "The whole system packages will be recreate! proceed?(y/n)[n]:\n "
-read -p "=> " Answer_Package_Recreate
+read -p "The whole system packages will be recreate! proceed?(y/n)[n]: " Answer_Package_Recreate
 
 case "$Answer_Package_Recreate" in
 	
 	"y"|"Yes"|"YES"|"Y")
 		$( pacman -Qq | awk ' { print $1 } ' |sed  's/^.*\// /g' > PackageList.txt)
 		;;
+
 	*) 
 		echo "No package will be recreate..."
 		exit
@@ -24,7 +24,7 @@ esac
 String=$(cat PackageList.txt)
 
 for Package in $String; do
-    bacman $Package 2> /dev/null
+    bacman $Package 
 done
 
 
@@ -33,7 +33,7 @@ rm -f PackageList.txt *.part
 cd
 
 # INSTALL PACKAGES TO /MNT
-pacstrap /mnt base 2> /dev/null
+pacstrap /mnt base 
 
 mkdir -m 755 -p /mnt/boot
 
