@@ -74,7 +74,7 @@ clear
 
 echo -e "Start installing BootLoader(grub) \n"
 read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
-if [[ "$DEVICE_INPUT" !=  "/dev/sda" &&  ! -z "$DEVICE_INPUT"]]; then
+if [[ "$DEVICE_INPUT" != "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
   
     if [ -d "/boot/efi" ]; then
         grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force $DEVICE_INPUT
