@@ -6,7 +6,7 @@ Thanks for using Archx ;<br/>
 2 : Design your hard disk layout with cfdisk or parted or gdisk(for GPT disks) or fdisk<br/> 
 3 : Format your partitions with mkfs(make file systems) (e.g. : `mkfs.ext4 /dev/sda4` or `mkswap /dev/sda7`) <br/>
 4 : Mount the partitions to /mnt<br/> 
-(for example you have four partition !:<br/>
+(for example you have four partitions !:<br/>
 <pre>
 partition       mountpoint
 /dev/sda4       /boot
@@ -17,7 +17,7 @@ partition       mountpoint
 you should make swap on and mount partitions!:<br/>
 <b>`swapon /dev/sda7`</b><br/>
 <b>`mount /dev/sda5 /mnt`</b><br/>
-<b>`mkdir -p /mnt/boot /mnt/home`</b><br/>
+<b>`mkdir -p /mnt/{boot,home}`</b><br/>
 <b>`mount /dev/sda4 /mnt/boot`</b><br/>
 <b>`mount /dev/sda6 /mnt/home`</b><br/>
 )<br/>
