@@ -1,7 +1,43 @@
 #!/usr/bin/env bash
 
+export LC_ALL=C
+
+clear
+
+if [[ $( id -u ) != 0 ]]
+
+then
+
+     echo -e "\n >> Can't install without root user permissions \n exiting"
+
+    exit -1
+
+fi
+
+echo -e "\n    >> Checking internet connection...."
+
+if [[ ! $( ping -c 3 8.8.8.8 ) ]]
+
+then
+
+    echo  -e "    >> Connection is not stable .... \n exiting..."
+
+    exit -1
+
+fi
+
+# Provide pacman for first use :
+pacman -Sy
+pacman-key --init
+pacman-key --populate archlinux
+pacman-key --refresh-keys
+
 echo -e "Installing needed tools ! \n"
-pacman -S grub sudo --needed --noconfirm
+if [ -d "/boot/efi" ]; then
+    pacman -S grub dosfstools efibootmgr os-prober --needed --noconfirm
+else
+  pacman -S grub os-prober --needed --noconfirm
+fi
 
 clear
 
@@ -38,10 +74,20 @@ clear
 
 echo -e "Start installing BootLoader(grub) \n"
 read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
-if [[ "$DEVICE_INPUT" !=  "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
-    grub-install --target=i386-pc --recheck $DEVICE_INPUT
-else
+if [[ "$DEVICE_INPUT" !=  "/dev/sda" &&  ! -z "$DEVICE_INPUT"]]; then
+  
+    if [ -d "/boot/efi" ]; then
+        grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force $DEVICE_INPUT
+      else
+      grub-install --target=i386-pc --recheck $DEVICE_INPUT
+    fi
+  
+  else
+    if [ -d "/boot/efi" ]; then
+  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force /dev/sda
+       else
     grub-install --target=i386-pc --recheck /dev/sda
+    fi    
 fi
 
 echo "Making initramfs \n"
