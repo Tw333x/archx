@@ -37,13 +37,16 @@ rm -f PackageList.txt *.part
 
 cd
 
-# create obligatory directories
-echo -e 'Creating install root at /mnt \n '
-mkdir -m 0755 -p /mnt/var/{cache/pacman/pkg,lib/pacman,log} /mnt/{dev,run,etc}
-mkdir -m 1777 -p /mnt/tmp
-mkdir -m 0555 -p /mnt/{sys,proc}
+pacstrap /mnt base &  && sleep 10 && pkill pacstrap
+
 mkdir -m 755 -p /mnt/boot
+
 cp -avT /run/archiso/bootmnt/arch/boot/$(uname -m)/vmlinuz /mnt/boot/vmlinuz-linux
 pacman -r /mnt -U /mnt/var/cache/pacman/pkg/*
 
+chmod 700 /mnt/root
+
+genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
+
+arch-chroot /mnt /usr/bin/bash -c "echo -e 'you can connect to internet now and run : curl -s -o chroot_jobs.sh https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh\n'"
 
