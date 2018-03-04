@@ -44,20 +44,18 @@ clear
 echo -e "Set a PASSWORD for root user : \n "
 passwd
 
-clear
-
 read -p  "Please enter a USERNAME : " USER_NAME_INPUT
 useradd -m -g users  -G wheel,storage,power  -s $(which zsh) $USER_NAME_INPUT
 
 echo -e "Set a PASSWORD for $USER_NAME_INPUT : "
 passwd $USER_NAME_INPUT
 
-clear
-
 echo -e "Setting timezone(Iran) \n"
 rm -f /etc/localtime
 ln -s /usr/share/zoneinfo/Iran /etc/localtime 
 hwclock --systohc --utc
+
+clear
 
 echo -e "Setting hostname \n"
 read -p "Please enter youre HOSTNAME : " HOST_NAME_INPUT
@@ -90,7 +88,7 @@ if [[ "$DEVICE_INPUT" != "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
     fi    
 fi
 
-echo "Making initramfs \n"
+echo -e "Making initramfs \n"
 read -p "Which KERNEL did you installed(linux or linux-zen or linux-hardened)? (Default = linux) : " KERNEL_TYPE_INPUT
 if [[ "$KERNEL_TYPE_INPUT" !=  "linux" &&  ! -z "$KERNEL_TYPE_INPUT" ]]; then
     mkinitcpio -p $KERNEL_TYPE_INPUT      
@@ -116,7 +114,7 @@ if ! command -v pacaur >/dev/null; then
     trap finish EXIT
     
     pushd $tmp
-    sudo pacman -Syu && sudo pacman -S base --needed
+    sudo pacman -Syu && sudo pacman -S base-devel --needed
     for pkg in cower pacaur; do
         curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$pkg && \
             makepkg --needed --noconfirm --skippgpcheck -sri
