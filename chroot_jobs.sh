@@ -102,7 +102,30 @@ echo -e "Making GRUB CONFIG \n"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 
-echo -e "Let's download pacaur installer! (an aur helper)! \n"
-curl -s -o /home/$USER_NAME_INPUT/install_pacaur.sh https://raw.githubusercontent.com/virtualdemon/archx/master/install_pacaur.sh && chmod +x /home/$USER_NAME_INPUT/install_pacaur.sh 
+echo -e "Making pacaur_installer script in /opt/user_bin for install aur: \n"
+mkdir -p /opt/user_bin
+touch /opt/user_bin/pacaur_installer && chmod +x /opt/user_bin/pacaur_installer
 
+tee -a /opt/user_bin/pacaur_installer << END
+#!/bin/bash
+if ! command -v pacaur >/dev/null; then
+    tmp=$(mktemp -d)
+    function finish {
+        rm -rf "$tmp"
+    }
+    trap finish EXIT
+    
+    pushd $tmp
+    sudo pacman -Syu && sudo pacman -S base --needed
+    for pkg in cower pacaur; do
+        curl -o PKGBUILD https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$pkg && \
+            makepkg --needed --noconfirm --skippgpcheck -sri
+    done
+    popd
 
+    if ! command -v pacaur >/dev/null; then
+        >&2 echo "Pacaur wasn't successfully installed"
+        exit 1
+    fi
+fi
+END
