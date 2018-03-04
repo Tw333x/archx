@@ -28,13 +28,17 @@ you should make swap on and mount partitions!:<br/>
 <h1>5 : Install to /mnt :</h1><br/>
 
 <h4>With rebuilding live system installed packages (with bacman)</h4> 
-` curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_bacman.sh && chmod +x install_system.sh && ./install_system.sh ` <br/> 
+```shell
+curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_bacman.sh && chmod +x install_system.sh && ./install_system.sh
+```  
 
 <h4>With rsync tool (copy live system to source) </h4>
-` curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_rsync.sh && chmod +x install_system.sh && ./install_system.sh ` <br/><br/> 
+```shell
+curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_rsync.sh && chmod +x install_system.sh && ./install_system.sh
+```  
 
 6 : You can read this script to see what will happen ... : `cat install_system.sh`<br/>
-for information : this script will install base system from the live system and turn off or delete some services ... and download some other files from <b>https://github.com/virtualdemon/archx</b> also you can install arch linux in way of net-install! <br/>
+for information : this script will install base system from the live system and turn off or delete some services ... and download some other files from [Github Repo](https://github.com/virtualdemon/archx) also you can install arch linux in way of net-install! <br/>
 
 7 : After system installation you can make your customization in CHROOT environment <br/>
 
