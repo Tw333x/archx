@@ -25,7 +25,7 @@ you should make swap on and mount partitions!:<br/>
 <b>`mount /dev/sda6 /mnt/home`</b><br/>
 )<br/>
 
-5 : <h1>Install to /mnt :</h1><br/>
+<h1>5 : Install to /mnt :</h1><br/>
 
 <h4>With rebuilding live system installed packages (with bacman)</h4> 
 <b>`curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_bacman.sh && chmod +x install_system.sh && ./install_system.sh`</b><br/> 
