@@ -28,12 +28,12 @@ you should make swap on and mount partitions!:<br/>
 <h2>5 : Install to /mnt :</h2>
 
 <h4>With rebuilding live system installed packages (with bacman)</h4> 
-```bash
+```
 curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_bacman.sh && chmod +x install_system.sh && ./install_system.sh
 ```  
 
 <h4>With rsync tool (copy live system to source) </h4>
-```bash
+```
 curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_rsync.sh && chmod +x install_system.sh && ./install_system.sh
 ```  
 <br/>
