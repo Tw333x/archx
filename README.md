@@ -6,9 +6,9 @@ Thanks for using Archx ;<br/>
 
 2 : Design your hard disk layout with **cfdisk** or **parted** or **gdisk** (for GPT disks) or **fdisk** <br/> 
 
-3 : Format your partitions with mkfs(make file systems) (e.g. : `mkfs.ext4 /dev/sda4` or `mkswap /dev/sda7`) <br/>
+3 : Format your partitions with `mkfs` (make file systems) (e.g. : `mkfs.ext4 /dev/sda4` or `mkswap /dev/sda7`) <br/>
 
-4 : Mount the partitions to /mnt <br/> 
+4 : Mount the partitions to __/mnt__ <br/> 
 (for example you have four partitions !: <br/>
 <pre>
 partition       mountpoint
