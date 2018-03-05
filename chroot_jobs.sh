@@ -86,7 +86,7 @@ if [ -d "/boot/efi" ]; then
         else
             grub-install --target=i386-pc --recheck /dev/sda
     fi
-
+  fi
 echo -e "Making initramfs \n"
 read -p "Which KERNEL did you installed(linux or linux-zen or linux-hardened)? (Default = linux) : " KERNEL_TYPE_INPUT
 if [[ "$KERNEL_TYPE_INPUT" !=  "linux" &&  ! -z "$KERNEL_TYPE_INPUT" ]]; then
