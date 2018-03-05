@@ -34,7 +34,7 @@ pacman-key --populate archlinux
 pacman-key --refresh-keys
 
 echo -e "Installing needed tools ! \n"
-if [ -d "/boot/efi" ]; then
+if [[ -d "/boot/efi" || -d "/boot/EFI" ]]; then
     echo "  >> EFI partition detected! \n"
     pacman -S grub dosfstools efibootmgr os-prober --needed --noconfirm
     else
@@ -77,6 +77,8 @@ echo -e "Start installing BootLoader(grub) \n"
 if [ -d "/boot/efi" ]; then
     echo -e "    >> EFI partition detected !\n"
     grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force 
+  elif [ -d "/boot/EFI" ]; then
+    grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=arch_grub --recheck -- debug --force
   else
     read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
     if [[ "$DEVICE_INPUT" != "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
