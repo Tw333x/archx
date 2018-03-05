@@ -102,7 +102,7 @@ mkdir -p /opt/user_bin
 touch /opt/user_bin/pacaur_installer && chmod +x /opt/user_bin/pacaur_installer
 
 tee -a /opt/user_bin/pacaur_installer << END
-#!/bin/bash
+#!/usr/bin/env bash
 if ! command -v pacaur >/dev/null; then
     tmp=$(mktemp -d)
     function finish {
