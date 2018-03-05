@@ -4,6 +4,7 @@ export LC_ALL=C
 
 clear
 
+#CHECK THE USER IS root
 if [[ $( id -u ) != 0 ]]
 
 then
@@ -14,8 +15,8 @@ then
 
 fi
 
+#CHECK INTERNET CONNECTION IS OFFLINE
 echo -e "\n    >> Checking internet connection...."
-
 if [[ ! $( ping -c 3 8.8.8.8 ) ]]
 
 then
@@ -34,9 +35,10 @@ pacman-key --refresh-keys
 
 echo -e "Installing needed tools ! \n"
 if [ -d "/boot/efi" ]; then
+    echo "  >> EFI partition detected! \n"
     pacman -S grub dosfstools efibootmgr os-prober --needed --noconfirm
-else
-  pacman -S grub os-prober --needed --noconfirm
+    else
+        pacman -S grub os-prober --needed --noconfirm
 fi
 
 clear
@@ -71,22 +73,17 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 clear
 
 echo -e "Start installing BootLoader(grub) \n"
-read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
-if [[ "$DEVICE_INPUT" != "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
-  
-    if [ -d "/boot/efi" ]; then
-        grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force $DEVICE_INPUT
-      else
-      grub-install --target=i386-pc --recheck $DEVICE_INPUT
-    fi
-  
+
+if [ -d "/boot/efi" ]; then
+    echo -e "    >> EFI partition detected !\n"
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --       recheck --debug --force 
   else
-    if [ -d "/boot/efi" ]; then
-  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck --debug --force /dev/sda
-       else
-    grub-install --target=i386-pc --recheck /dev/sda
-    fi    
-fi
+    read -p "On which device you want to  install BOOTLOADER ? (Default = /dev/sda) : " DEVICE_INPUT
+    if [[ "$DEVICE_INPUT" != "/dev/sda" &&  ! -z "$DEVICE_INPUT" ]]; then
+        grub-install --target=i386-pc --recheck $DEVICE_INPUT
+        else
+            grub-install --target=i386-pc --recheck /dev/sda
+    fi
 
 echo -e "Making initramfs \n"
 read -p "Which KERNEL did you installed(linux or linux-zen or linux-hardened)? (Default = linux) : " KERNEL_TYPE_INPUT
