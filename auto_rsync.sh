@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 rsync -aAXvP /* /mnt --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/.gvfs}
 
@@ -18,4 +18,6 @@ chmod 700 /mnt/root
 
 genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
-arch-chroot /mnt /bin/bash -c "curl -s -o chroot_jobs.sh https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh"
+echo -e "\nYou can run this command to start chroot_job scripts : curl -s -o chroot_jobs.sh https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs.sh && ./chroot_jobs.sh"
+
+arch-chroot /mnt 
