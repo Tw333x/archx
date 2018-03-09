@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $( ping -c 3 8.8.8.8 ) ]]
-
-then
+if [[ ! $( ping -c 3 8.8.8.8 ) ]]; then
 
     echo  -e "  >> Starting oflline installation \n"
     sleep 3
@@ -17,13 +15,15 @@ clear
 
 echo "You are here : " && pwd
 
-# SELECT ACTION
+# RECREATE PACKAGES
 read -p "The whole system packages will be recreate! proceed?(y/n)[n]: " Answer_Package_Recreate
 
 case "$Answer_Package_Recreate" in
 	
 	"y"|"yes"|"Yes"|"YES"|"Y")
-		$( pacman -Qq | awk ' { print $1 } ' |sed  's/^.*\// /g' > PackageList.txt)
+        for package in $(pacman -Qq); do 
+          bacman $package 
+        done
 		;;
 
 	*) 
@@ -32,15 +32,7 @@ case "$Answer_Package_Recreate" in
 		;;
 esac
 
-# RECREATE PACKAGES FROM LIVE SYSTEM
-String=$(cat PackageList.txt)
-
-for Package in $String; do
-    bacman $Package 
-done
-
-
-rm -f PackageList.txt *.part
+rm -f *.part
 
 cd
 
