@@ -1,6 +1,6 @@
 Thanks for using Archx ;<br/>
 
-<h2>It's an easy way to install ArchLinux </h2><br/>
+<h2>Archlinux Offline installer! </h2><br/>
 
 1 : Login to system with "`root`" ; in ArchLinux live system you'll login automatically. <br/>
 
