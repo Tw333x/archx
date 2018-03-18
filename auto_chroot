@@ -42,7 +42,7 @@ pacman-key --refresh-keys
 # Install tools for bootloader installation
 echo -e "Installing needed tools ! \n"
 if [ -d "/sys/firmware/efi"  ]; then
-    echo "  >> EFI detected! \n"
+    echo "  >>   EFI detected! \n"
     pacman -S grub dosfstools efibootmgr os-prober --needed --noconfirm
     else
         pacman -S grub os-prober --needed --noconfirm
@@ -64,15 +64,7 @@ while [ 1 ]; do
   done
 
 # Create a normal user
-while [ 1 ];do
-    read -p  "Please enter a USERNAME : " USER_NAME_INPUT
-        if [ ! $? == "0" ];then
-          echo -e "!! choose another user name \n"
-          read -p  "Please enter a USERNAME : " USER_NAME_INPUT
-        else
-          break
-        fi
-      done
+read -p  "Please enter a USERNAME : " USER_NAME_INPUT
 useradd -m -g users  -G wheel,storage,power  -s /usr/bin/bash $USER_NAME_INPUT
 
 # Set password for new normal user
