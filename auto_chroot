@@ -127,7 +127,7 @@ if [ -d "/sys/firmware/efi" ]; then
             read -p "Where is esp (EFI) partition mounted (e.g.: /boot , /boot/esp) ? " EFI_MOUNTPOINT
             echo -e "   >> EFI partition is $EFI_MOUNTPOINT"
             if [ -d "$EFI_MOUNTPOINT" ];then
-              grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=arch_grub --recheck --debug --force
+              grub-install --target=x86_64-efi --efi-directory=$EFI_MOUNTPOINT --bootloader-id=arch_grub --recheck --debug --force
               break
             else
               echo -e "You entered wrong EFI MOUNTPOINT \n"
