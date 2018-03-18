@@ -74,7 +74,7 @@ while [ 1 ]; do
     if [ ! $? == "0" ];then
       clear
       echo -e "Set a PASSWORD for $USER_NAME_INPUT : \n"
-      passwdo $USER_NAME_INPUT
+      passwd $USER_NAME_INPUT
     else
       break
     fi
