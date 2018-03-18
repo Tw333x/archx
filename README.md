@@ -29,21 +29,16 @@ you should make swap on and mount partitions!:<br/>
 
 <h4>With rebuilding live system installed packages (with bacman)</h4> 
 
-<b>`curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_bacman.sh && chmod +x install_system.sh && ./install_system.sh` </b>  
+<b>`curl -s -o installer https://raw.githubusercontent.com/virtualdemon/archx/master/installer && chmod +x installer && ./installer` </b>  
 
-<h4>With rsync tool (copy live system to source) </h4>
-
-<b>`curl -s -o install_system.sh https://raw.githubusercontent.com/virtualdemon/archx/master/auto_rsync.sh && chmod +x install_system.sh && ./install_system.sh`</b>
-<br/><br/>
-6 : You can read this script to see what will happen ... : `cat install_system.sh` <br/>
+6 : You can read this script (before running) to see what will happen ... : `cat installer` <br/>
 Also if you want to do your chroot customizations automatically you can run below command in chroot environment : <br/>
-<b>`curl -s -o chroot_jobs https://raw.githubusercontent.com/virtualdemon/archx/master/chroot_jobs.sh && chmod +x chroot_jobs && ./chroot_jobs`</b> 
+<b>`curl -s -o auto_chroot https://raw.githubusercontent.com/virtualdemon/archx/master/auto_chroot && chmod +x auto_chroot && ./auto_chroot`</b> 
 <br/><br/>
-7 : After system installation you can make your customization in CHROOT environment <br/>
 
 8 : When your customization finished you can `exit` and `reboot` system to use your installed arch linux .<br/>
 
-9 : For using pacman for first time run this commands :<br/>
+9 : For using pacman(if you didn't execute auto_chroot) for first time run this commands :<br/>
 `pacman -Sy` <br/>
 `pacman-key --init` <br/>
 `pacman-key --populate archlinux`<br/>
