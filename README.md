@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <h1>About ArchX</h1><br/>
 ArchX is a ArchLinux installer script which helps you to install ArchLinux while your offline, further more, it uses **bacman** to extract packages from ArchLinux ISO you booted, in addition, it conveys all packages to **/mnt** , on the other hand you are not forced to use Pacstrap script thus you'll have all needed packages installed! 
+=======
+<h1>About ArchX</h1>
+ArchX is a ArchLinux installer script which helps you to install ArchLinux while your offline, further more, it uses **bacman** to extract packages from ArchLinux ISO you booted, in addition, it conveys all packages to **/mnt**, on the other hand you are not forced to use Pacstrap script thus you'll have all needed packages installed! 
+>>>>>>> ee7ea6642b38d005710ad2711435faa721f8c6a7
 
 <h2>Archlinux Offline installer! </h2><br/>
 
