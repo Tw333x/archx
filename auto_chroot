@@ -2,23 +2,21 @@
 
 export LC_ALL=C
 
-clear
-
 # Check if user was root continue the script
 if [[ $( id -u ) != 0 ]];then
 
-     echo -e "\n >> Can't install without root user permissions \n exiting"
+     echo -e "\n >>     Can't install without root user permissions \n exiting"
 
     exit
 
 fi
 
 # Check the internet connection : you should be ONLINE
-echo -e "\n    >> Checking internet connection...."
+echo -e "\n    >>   Checking internet connection...."
 ping_counter=0
 while [ 1 ];do
     if [[ ! $( ping -c 3 8.8.8.8 ) ]];then
-        echo  -e "    >> Connection is not stable .... \n Check your connection..."
+        echo  -e "    >>    Connection is not stable .... \n Check your connection..."
         sleep 5
         ((ping_counter++))
         echo $ping_counter
@@ -27,7 +25,7 @@ while [ 1 ];do
           exit
         fi
     else
-        echo -e "  >> Connection established! \n"
+        echo -e "  >>   Connection established! \n"
        break
       fi
 done
@@ -37,7 +35,6 @@ done
 pacman -Sy
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key --refresh-keys
 
 # Install tools for bootloader installation
 echo -e "Installing needed tools ! \n"
@@ -80,7 +77,7 @@ while [ 1 ]; do
     fi
   done
 # Set timezone
-echo -e "Found your timezone path\nPress ARROW KEYS to move and Press q to quit..."
+echo -e "Find your timezone file\nPress ARROW KEYS to move and Press q to quit..."
 rm -f /etc/localtime
 ls -R /usr/share/zoneinfo | less
 while [ 1 ];do
