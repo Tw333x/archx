@@ -81,7 +81,7 @@ echo -e "Find your timezone file\nPress ARROW KEYS to move and Press q to quit..
 rm -f /etc/localtime
 ls -R /usr/share/zoneinfo | less
 while [ 1 ];do
-  read -p "Enter your selected region (e.g.:(/usr/share/zoneinfo/Iran)): " $SELECTED_REGION
+  read -p "Enter your selected region (e.g.:(/usr/share/zoneinfo/Iran)): " SELECTED_REGION
   ln -sf  $SELECTED_REGION /etc/localtime
     if [ ! $? == "0" ];then
       clear
