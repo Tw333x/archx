@@ -38,7 +38,7 @@ fi
 mkdir -p /mnt/var/cache/pacman/pkg/ && cd /mnt/var/cache/pacman/pkg/
 clear
 
-echo -e "${Yellow}You are here :${Green} " && pwd
+echo -e "${Yellow}You are here :${Green} `pwd` "
 
 # Recreate live system packages with bacman
 read -p "$(echo -e "${White}The whole system packages will be recreate! proceed?[y/N]: ")" Answer_Package_Recreate
@@ -63,7 +63,7 @@ rm -f *.part
 # Change directory to ~/
 clear
 cd
-echo -e "${Green}Process completed!${Yellow}You are here :${Green} " && pwd
+echo -e "${Green}Process completed!${Yellow}You are here : ${Green}`pwd` ${Color_Off} \n" 
 
 # Pacstrap packages without installation (just for creating the base system directories...)
 echo -e "${Green} Installing packages to /mnt${Color_Off}"
@@ -87,7 +87,7 @@ clear
 genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
 # Add pacaur_installer script in : /mnt/opt/user_bin/pacaur_installer
-echo -e "${Yellow}Creating pacaur_installer script in /mnt/opt/user_bin for install aur: \n"
+echo -e "${Yellow}Creating pacaur_installer script in /mnt/opt/user_bin for install aur: ${Color_Off}\n"
 mkdir -p /mnt/opt/user_bin
 touch /mnt/opt/user_bin/pacaur_installer && chmod +x /mnt/opt/user_bin/pacaur_installer
 
