@@ -9,8 +9,9 @@ Green='\033[0;32m'        # Green
 Yellow='\033[0;33m'       # Yellow
 Blue='\033[0;34m'         # Blue
 White='\033[0;37m'        # White
+Purple='\033[0;35m'       # Purple
 
-# Archx ascii art
+# Archx apcii art
 echo -e """${Blue} 
                  █████████                     █████                
                 ███▒▒▒▒▒███                    ▒▒███                 
@@ -24,13 +25,19 @@ echo -e """${Blue}
 ${Color_Off}
 """
 
+# Make system offline
+INTERFACE_NAME=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
+ip link set dev $INTERFACE_NAME down
+echo -e "${Purple}Interface is down now!${Color_Off}\n"
+sleep 3 
+
 # Check internet connection : for offline installation
 if [[ ! $( ping -c 3 8.8.8.8 2> /dev/null ) ]]; then
 
     echo  -e "${Green}Starting offline installation \n"
     sleep 3
     else
-      echo -e "${Red}Internet Connection detected ! exiting...\n"
+      echo -e "${Red}Internet Connection detected ! please make yourself  exiting...\n"
       exit
 fi 
 
@@ -114,8 +121,12 @@ if ! command -v pacaur >/dev/null; then
     fi
 fi
 END
-
-# Change root to the new installed system in /mnt
 clear
 
+# Make system online
+ip link set dev $INTERFACE_NAME up
+sleep 3
+echo -e "${Purple}You are Online again!${Color_Off}\n"
+
+# Change root to /mnt
 arch-chroot /mnt
