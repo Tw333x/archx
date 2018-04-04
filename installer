@@ -46,7 +46,7 @@ case "$Answer_Package_Recreate" in
 	
 	"y"|"yes"|"Yes"|"YES"|"Y")
         for package in $(pacman -Qq); do 
-          bacman $package 2> /dev/null
+          bacman $package 
         done
 		;;
 
