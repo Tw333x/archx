@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+clear
 # Define colors
 # Reset
 Color_Off='\033[0m'       # Text Reset
@@ -25,20 +25,20 @@ ${Color_Off}
 """
 
 # Check internet connection : for offline installation
-if [[ ! $( ping -c 3 8.8.8.8 ) ]]; then
+if [[ ! $( ping -c 3 8.8.8.8 2> /dev/null ) ]]; then
 
     echo  -e "${Green}Starting offline installation \n"
     sleep 3
     else
       echo -e "${Red}Internet Connection detected ! exiting...\n"
       exit
-fi
+fi 
 
 # Create pacman-cache directory and change directory to there
 mkdir -p /mnt/var/cache/pacman/pkg/ && cd /mnt/var/cache/pacman/pkg/
 clear
 
-echo -e "${Yellow}You are here :${White} " && pwd
+echo -e "${Yellow}You are here :${Green} " && pwd
 
 # Recreate live system packages with bacman
 read -p "The whole system packages will be recreate! proceed?[y/N]: " Answer_Package_Recreate
@@ -47,7 +47,7 @@ case "$Answer_Package_Recreate" in
 	
 	"y"|"yes"|"Yes"|"YES"|"Y")
         for package in $(pacman -Qq); do 
-          bacman $package 
+          bacman $package 2> /dev/null
         done
 		;;
 
@@ -61,9 +61,12 @@ esac
 rm -f *.part
 
 # Change directory to ~/
+clear
 cd
+echo -e "${Green}Process completed!${Yellow}You are here :${Green} " && pwd
 
 # Pacstrap packages without installation (just for creating the base system directories...)
+echo -e "${Green} Installing packages to /mnt${Color_Off}"
 pacstrap /mnt base 
 
 # Create boot directory in new system
@@ -73,7 +76,7 @@ mkdir -m 755 -p /mnt/boot
 cp -avT /run/archiso/bootmnt/arch/boot/$(uname -m)/vmlinuz /mnt/boot/vmlinuz-linux
 
 # Start Offline package installation to /mnt
-pacman -r /mnt -U /mnt/var/cache/pacman/pkg/* --noconfirm --force --needed
+pacman -r /mnt -U /mnt/var/cache/pacman/pkg/* --noconfirm --force --needed 2> /dev/null
 
 # Change root directory permissions
 chmod 700 /mnt/root
