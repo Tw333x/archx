@@ -1,21 +1,44 @@
 #!/usr/bin/env bash
 
+# Define colors
+# Reset
+Color_Off='\033[0m'       # Text Reset
+# Regular Colors
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+White='\033[0;37m'        # White
+
+# Archx ascii art
+echo -e """${Blue} 
+                 █████████                     █████                
+                ███▒▒▒▒▒███                    ▒▒███                 
+               ▒███    ▒███  ████████   ██████  ▒███████   █████ █████
+               ▒███████████ ▒▒███▒▒██ ████▒▒███ ▒███▒▒███ ▒▒███ ▒▒███ 
+               ▒███▒▒▒▒▒███  ▒███ ▒▒▒ ▒███ ▒▒▒  ▒███ ▒███  ▒▒▒█████▒  
+               ▒███    ▒███  ▒███     ▒███  ███ ▒███ ▒███   ███▒▒▒███ 
+               █████   █████ █████    ▒▒██████  ████ █████ █████ █████
+              ▒▒▒▒▒   ▒▒▒▒▒▒ ▒▒▒▒      ▒▒▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ 
+
+${Color_Off}
+"""
+
 # Check internet connection : for offline installation
 if [[ ! $( ping -c 3 8.8.8.8 ) ]]; then
 
-    echo  -e "  >> Starting offline installation \n"
+    echo  -e "${Green}Starting offline installation \n"
     sleep 3
     else
-      echo -e "   >> Internet Connection detected ! exiting..."
-      sleep 2
-      exit -1
+      echo -e "${Red}Internet Connection detected ! exiting...\n"
+      exit
 fi
 
 # Create pacman-cache directory and change directory to there
 mkdir -p /mnt/var/cache/pacman/pkg/ && cd /mnt/var/cache/pacman/pkg/
 clear
 
-echo "You are here : " && pwd
+echo -e "${Yellow}You are here :${White} " && pwd
 
 # Recreate live system packages with bacman
 read -p "The whole system packages will be recreate! proceed?[y/N]: " Answer_Package_Recreate
@@ -29,7 +52,7 @@ case "$Answer_Package_Recreate" in
 		;;
 
 	*) 
-		echo "No package will be recreate..."
+		echoi -e "${Red}No package will be recreate!..."
 		exit
 		;;
 esac
@@ -61,7 +84,7 @@ clear
 genfstab -U -p /mnt >> /mnt/etc/fstab && cat /mnt/etc/fstab
 
 # Add pacaur_installer script in : /mnt/opt/user_bin/pacaur_installer
-echo -e "Creating pacaur_installer script in /mnt/opt/user_bin for install aur: \n"
+echo -e "${Yellow}Creating pacaur_installer script in /mnt/opt/user_bin for install aur: \n"
 mkdir -p /mnt/opt/user_bin
 touch /mnt/opt/user_bin/pacaur_installer && chmod +x /mnt/opt/user_bin/pacaur_installer
 
