@@ -8,6 +8,7 @@ Red='\033[0;31m'          # Red
 Green='\033[0;32m'        # Green
 Yellow='\033[0;33m'       # Yellow
 Blue='\033[0;34m'         # Blue
+White='\033[0;37m'        # White
 
 # Archx ascii art
 echo -e """${Blue} 
@@ -38,9 +39,9 @@ mkdir -p /mnt/var/cache/pacman/pkg/ && cd /mnt/var/cache/pacman/pkg/
 clear
 
 echo -e "${Yellow}You are here :${Green} " && pwd
-echo -e "${Color_Off}"
+
 # Recreate live system packages with bacman
-read -p "The whole system packages will be recreate! proceed?[y/N]: " Answer_Package_Recreate
+read -p "$(echo -e "${White}The whole system packages will be recreate! proceed?[y/N]: ")" Answer_Package_Recreate
 
 case "$Answer_Package_Recreate" in
 	
