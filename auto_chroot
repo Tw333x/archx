@@ -13,9 +13,9 @@ fi
 
 # Check you are in chroot or not!                                                                     
 if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then                                
-  echo "chroot detected"                                                                              
+  echo -e "chroot detected \n"                                                                              
 else                                                                                                  
-  echo "you aren't in chroot mode . exiting..."                                                       
+  echo -e "you aren't in chroot mode . exiting...\n"                                                       
   exit                                                                                                
 fi  
 
