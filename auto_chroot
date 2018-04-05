@@ -11,6 +11,14 @@ if [[ $( id -u ) != 0 ]];then
 
 fi
 
+# Check you are in chroot or not!                                                                     
+if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then                                
+  echo "chroot detected"                                                                              
+else                                                                                                  
+  echo "you aren't in chroot mode . exiting..."                                                       
+  exit                                                                                                
+fi  
+
 # Check the internet connection : you should be ONLINE
 echo -e "\n    >>   Checking internet connection...."
 ping_counter=0
