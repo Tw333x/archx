@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/virtualdemon/archx/master/screenshot/screenshot.png "ARCHX") <br/>
+![Archx ascii art logo](https://raw.githubusercontent.com/virtualdemon/archx/master/screenshot/screenshot.png "ARCHX") <br/>
 <h1>About ArchX</h1><br/>
 ArchX is a ArchLinux installer script which helps you to install ArchLinux while your offline, further more, it uses <b>bacman</b> to extract packages from ArchLinux ISO you booted, in addition, it conveys all packages to <b>/mnt</b> , on the other hand you are not forced to use Pacstrap script thus you'll have all needed packages installed!<br/>
 
